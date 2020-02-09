@@ -33,4 +33,34 @@ public class UserController {
         log.info("Getting list of users");
         return userService.getAllUsers();
     }
+
+    @GetMapping
+    public UserDto getUser(@RequestParam String surname) {
+        log.info("Get user by surname = {}", surname);
+        return userService.findBySurname(surname);
+    }
+
+    @DeleteMapping("{userId}")
+    public void deleteUserById(@PathVariable Long userId) {
+        log.info("Delete user by ID = {}", userId);
+        userService.deleteUserById(userId);
+    }
+
+    @DeleteMapping(value = "all")
+    public void deleteAllUsers() {
+        log.info("Delete all users");
+        userService.deleteAllUsers();
+    }
+
+    @GetMapping(value = "usersByAge")
+    public List<UserDto> getUsersByAge() {
+        log.info("Getting list of users by age");
+        return userService.usersByAge();
+    }
+
+    @GetMapping(value = "oldestUserWithPhone")
+    public UserDto getOldestUserWithPhone() {
+        log.info("Getting the oldest user with phone number");
+        return userService.getTheOldestWithPhone();
+    }
 }

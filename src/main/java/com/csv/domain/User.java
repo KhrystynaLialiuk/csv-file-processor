@@ -5,12 +5,23 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+
+@NamedNativeQueries({
+        @NamedNativeQuery(
+                name = "User.retrieveUsersByAge",
+                query = "SELECT * FROM USER ORDER BY DATE_OF_BIRTH",
+                resultClass = User.class
+        ),
+
+        @NamedNativeQuery(
+                name = "User.retrieveTheOldestUserWithPhoneNumber",
+                query = "SELECT * FROM USER WHERE PHONE IS NOT NULL ORDER BY DATE_OF_BIRTH",
+                resultClass = User.class
+        )
+})
 
 @Entity
 @Getter

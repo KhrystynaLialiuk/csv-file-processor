@@ -1,5 +1,6 @@
 package com.csv.service;
 
+import com.csv.domain.User;
 import com.csv.dto.UserDto;
 import com.csv.mapper.UserMapper;
 import com.csv.repository.UserRepository;
@@ -57,5 +58,26 @@ public class UserService {
 
     public List<UserDto> getAllUsers() {
         return userMapper.toUserDtoList(userRepository.findAll());
+    }
+
+    public UserDto findBySurname(String surname) {
+        return userMapper.toUserDto(userRepository.findBySurname(surname));
+    }
+
+    public void deleteUserById(Long userId) {
+        userRepository.deleteById(userId);
+    }
+
+    public void deleteAllUsers() {
+        userRepository.deleteAll();
+    }
+
+    public List<UserDto> usersByAge() {
+        return userMapper.toUserDtoList(userRepository.retrieveUsersByAge());
+    }
+
+    public UserDto getTheOldestWithPhone() {
+        List<User> sortedWithPhone = userRepository.retrieveTheOldestUserWithPhoneNumber();
+        return userMapper.toUserDto(sortedWithPhone.get(0));
     }
 }
