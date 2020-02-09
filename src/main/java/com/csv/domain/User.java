@@ -10,7 +10,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 import java.time.LocalDate;
 
 @Entity
@@ -38,6 +37,5 @@ public class User {
     private LocalDate dateOfBirth;
 
     @Column(name = "PHONE", unique = true)
-    @Pattern(regexp="([0-9]{10})")
     private String phone;
 }

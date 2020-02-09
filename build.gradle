@@ -21,6 +21,7 @@ dependencies {
     compileOnly 'org.projectlombok:lombok:1.18.8'
     annotationProcessor 'org.projectlombok:lombok:1.18.8'
     runtimeOnly('com.h2database:h2')
+    compile group: 'com.opencsv', name: 'opencsv', version: '5.0'
 }
 
 test {
